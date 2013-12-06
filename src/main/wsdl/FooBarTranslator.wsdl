@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://localhost:8080/jp.go.nict.langrid.webapps.blank/services/FooBarTranslator" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://localhost:8080/jp.go.nict.langrid.webapps.blank/services/FooBarTranslator" xmlns:intf="http://localhost:8080/jp.go.nict.langrid.webapps.blank/services/FooBarTranslator" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+
+   <wsdl:message name="translateResponse">
+
+      <wsdl:part name="translateReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="translateRequest">
+
+      <wsdl:part name="input" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="FooBarTranslator">
+
+      <wsdl:operation name="translate" parameterOrder="input">
+
+         <wsdl:input message="impl:translateRequest" name="translateRequest"/>
+
+         <wsdl:output message="impl:translateResponse" name="translateResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FooBarTranslatorSoapBinding" type="impl:FooBarTranslator">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="translate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="translateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://proxy.sun.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="translateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/jp.go.nict.langrid.webapps.blank/services/FooBarTranslator" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FooBarTranslatorService">
+
+      <wsdl:port binding="impl:FooBarTranslatorSoapBinding" name="FooBarTranslator">
+
+         <wsdlsoap:address location="http://localhost:8080/jp.go.nict.langrid.webapps.blank/services/FooBarTranslator"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
