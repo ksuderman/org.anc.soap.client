@@ -2,11 +2,14 @@ package org.anc.soap.client;
 
 import java.rmi.RemoteException;
 
+import javax.xml.crypto.Data;
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.apache.axis.encoding.ser.BeanDeserializerFactory;
+import org.apache.axis.encoding.ser.BeanSerializerFactory;
 
 /**
  * The AbstractSoapClient manages the Axis Service and Call objects 
@@ -42,6 +45,10 @@ public abstract class AbstractSoapClient
    {
       service = new Service();
       call = (Call) service.createCall();
+      QName q = new QName ("uri:org.lappsgrid.api/", "Data");
+      BeanSerializerFactory serializer =   new BeanSerializerFactory(Data.class,q);   // step 2
+      BeanDeserializerFactory deserializer = new BeanDeserializerFactory(Data.class,q);  // step 3
+      call.registerTypeMapping(Data.class, q, serializer, deserializer); //step 4
    }
    
    public AbstractSoapClient(String namespace) throws ServiceException
